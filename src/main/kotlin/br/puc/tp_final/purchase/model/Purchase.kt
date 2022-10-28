@@ -4,9 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 data class Purchase(
 
-    @JsonProperty("purchaseId") val purchaseId: Int,
-    @JsonProperty("purchaseName") val purchaseName: String,
-    @JsonProperty("product") val product: List<Product>,
-    @JsonProperty("totalQuantity") val totalQuantity: Int,
-    @JsonProperty("isSameDayDelivery") val isSameDayDelivery: Boolean
+        @JsonProperty("purchaseId") val purchaseId: Int,
+        @JsonProperty("product") val products: Map<Long, Long>,
+        @JsonProperty("isSameDayDelivery") val isSameDayDelivery: Boolean
 )
