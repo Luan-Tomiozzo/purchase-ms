@@ -1,12 +1,12 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-	id("org.springframework.boot") version "2.1.1.RELEASE"
-	id("io.spring.dependency-management") version "1.0.6.RELEASE"
+	id("org.springframework.boot") version "2.7.5"
+	id("io.spring.dependency-management") version "1.1.0"
 	war
-	kotlin("jvm") version "1.3.20"
-	kotlin("plugin.spring") version "1.3.10"
-	kotlin("plugin.jpa") version "1.3.10"
+	kotlin("jvm") version "1.7.20"
+	kotlin("plugin.spring") version "1.7.20"
+	kotlin("plugin.jpa") version "1.7.20"
 }
 
 group = "br.puc"
@@ -26,19 +26,18 @@ dependencies {
 	implementation("org.hsqldb:hsqldb")
 	implementation("com.h2database:h2:1.4.200")
 
-
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("com.fasterxml.jackson.datatype:jackson-datatype-jdk8")
-	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.springframework.boot:spring-boot-configuration-processor")
 	implementation("io.github.microutils:kotlin-logging:1.6.10")
-	implementation("org.springframework.boot:spring-boot-starter-amqp:2.1.1.RELEASE")
-    implementation("org.projectlombok:lombok:1.18.22")
+	implementation("org.springframework.boot:spring-boot-starter-amqp:2.7.5")
+    implementation("org.projectlombok:lombok:1.18.24")
+
+	implementation("org.springdoc:springdoc-openapi-data-rest:1.6.12")
+	implementation("org.springdoc:springdoc-openapi-ui:1.6.11")
+	implementation("org.springdoc:springdoc-openapi-kotlin:1.6.12")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-
-	implementation("io.springfox:springfox-swagger-ui:2.9.2")
-	implementation("io.springfox:springfox-swagger2:2.9.2")
 }
 
 tasks.withType<KotlinCompile> {

@@ -1,42 +1,28 @@
 package br.puc.tp_final.purchase.configuration
 
+import io.swagger.v3.oas.models.OpenAPI
+import io.swagger.v3.oas.models.info.Contact
+import io.swagger.v3.oas.models.info.Info
+import io.swagger.v3.oas.models.info.License
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import springfox.documentation.builders.PathSelectors
-import springfox.documentation.builders.RequestHandlerSelectors
-import springfox.documentation.spi.DocumentationType
-import springfox.documentation.spring.web.plugins.Docket
-import springfox.documentation.swagger2.annotations.EnableSwagger2
-
-import springfox.documentation.service.ApiInfo
-import springfox.documentation.service.Contact
-import springfox.documentation.builders.ApiInfoBuilder
 
 @Configuration
-@EnableSwagger2
 class SwaggerConfiguration {
-
     @Bean
-    open fun api(): Docket = Docket(DocumentationType.SWAGGER_2)
-        .apiInfo(getApiInfo())
-        .select()
-        .apis(RequestHandlerSelectors.basePackage("br.puc.tp_final.purchase"))
-        .paths(PathSelectors.any())
-        .build()
-
-    private fun getApiInfo(): ApiInfo {
-        val contact = Contact(
-            "Caio, Daniel, Eduardo Augusto, Kauane, Luan, Paulo, Rafael, Ricardo",
-            "Trabalho Java",
-            "Arquitetura"
-        )
-        return ApiInfoBuilder()
-            .title("Api Purchase")
-            .description("Api Definition")
-            .version("1.0.0")
-            .license("Apache 2.0")
-            .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0")
-            .contact(contact)
-            .build()
+    fun customOpenAPI(@Value("\${springdoc.version}") springDocVersion: String?): OpenAPI? {
+        return OpenAPI()
+            .info(
+                Info().title("Purchase API")
+                    .version(springDocVersion)
+                    .contact(
+                        Contact().name("Caio Campos, Daniel Spiegel, Eduardo Augusto Lima Pereira, Kauane Cordeiro, Luan Pedro Tomiozzo, Paulo Henrique Borges Pereira, Rafael Sanzio Lopes Rocha, Ricardo Silva Pereira")
+                            .url("https://github.com/Edd002/purchase-ms")
+                    )
+                    .description("Este é um exemplo de um microserviço de compras utilizando Kotlin e Spring Boot")
+                    .termsOfService("http://swagger.io/terms")
+                    .license(License().name("Open API 3 - Documentation").url("http://springdoc.org"))
+            )
     }
 }

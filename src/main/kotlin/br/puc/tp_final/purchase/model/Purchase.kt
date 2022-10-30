@@ -1,10 +1,27 @@
 package br.puc.tp_final.purchase.model
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import javax.persistence.*
 
-data class Purchase(
+@Entity
+@Table(name = "tb_purchase")
+data class Purchase (
 
-        @JsonProperty("purchaseId") val purchaseId: Int,
-        @JsonProperty("product") val products: Map<Long, Long>,
-        @JsonProperty("isSameDayDelivery") val isSameDayDelivery: Boolean
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "purchaseId")
+    val purchaseId: Long? = null,
+
+    @Column(name = "value")
+    val value: Double,
+
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = "paymentType", referencedColumnName = "paymentTypeId", foreignKey = ForeignKey(name = "fk_purchase_payment"))
+    val paymentType: PaymentType,
+
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = "deliver", referencedColumnName = "deliverId", foreignKey = ForeignKey(name = "fk_purchase_deliver"))
+    val deliver: Deliver,
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "purchase", cascade = [CascadeType.ALL])
+    val products: List<ProductPurchase>? = null
 )

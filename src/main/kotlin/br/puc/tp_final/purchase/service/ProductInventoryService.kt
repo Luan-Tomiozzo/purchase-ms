@@ -9,19 +9,21 @@ import org.springframework.stereotype.Service
 class ProductInventoryService {
 
     @Autowired
-    lateinit var repository: ProductInventoryRepository;
+    lateinit var productInventoryRepository: ProductInventoryRepository;
 
     fun verifyQuantityProductInventory(products: Map<Long, Long>): Boolean {
         products.forEach{(id, quantity) ->
             run {
-                val pi = repository.findByProduct(id).orElseThrow { BusinessException("Produto não localizado") };
+                val pi = productInventoryRepository.findByProduct(id).orElseThrow { BusinessException("Produto não localizado.") };
 
+                /*
                 if (pi.quantity < quantity) {
                     throw BusinessException("O estoque não possui a quantidade solicitada para o produto " + id + ".");
                 } else {
                     pi.quantity = pi.quantity - quantity;
-                    repository.save(pi);
+                    productInventoryRepository.save(pi);
                 }
+                */
             }
         }
         return true;

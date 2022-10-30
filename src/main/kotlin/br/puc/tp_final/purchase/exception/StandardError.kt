@@ -6,5 +6,4 @@ class StandardError (
     val status: Int?,
     val error: String?,
     val message: String?
-
 )
