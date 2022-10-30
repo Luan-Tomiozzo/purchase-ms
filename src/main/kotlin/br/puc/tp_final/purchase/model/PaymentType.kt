@@ -9,14 +9,14 @@ data class PaymentType (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "paymentTypeId")
-    val paymentTypeId: Long? = null,
+    var paymentTypeId: Long? = null,
 
     @Column(name = "type")
-    val type: String,
+    var type: String,
 
     @Column(name = "description")
-    val description: String,
+    var description: String,
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "paymentType", cascade = [CascadeType.ALL])
-    val purchases: List<Purchase>? = null
+    var purchases: List<Purchase>? = null
 )

@@ -11,11 +11,11 @@ data class ProductDTO (
     @NotNull(message = "O id do produto não pode ser nulo.")
     @Positive(message = "O id do produto não pode ser negativo.")
     @JsonProperty("productId")
-    val productId: Int,
+    val productId: Long,
 
     @Schema(description = "Quantidade do produto.", example = "5")
     @NotNull(message = "A quantidade do produto não pode ser nula.")
     @Positive(message = "A quantidade do produto não pode ser negativa.")
     @JsonProperty("quantity")
-    val quantity: Int
+    val quantity: Long
 )

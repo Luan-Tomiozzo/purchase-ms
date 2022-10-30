@@ -10,6 +10,6 @@ import java.util.Optional
 @Repository
 interface ProductInventoryRepository : JpaRepository<ProductInventory, Long> {
 
-    @Query("SELECT pi FROM ProductInventory pi WHERE pi.product.id = :productId")
+    @Query("SELECT pi FROM ProductInventory pi WHERE pi.product.productId = :productId")
     fun findByProduct(@Param("productId") productId: Long): Optional<ProductInventory>;
 }

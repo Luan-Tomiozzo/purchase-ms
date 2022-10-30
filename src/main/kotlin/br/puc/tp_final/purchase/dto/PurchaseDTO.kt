@@ -17,11 +17,11 @@ data class PurchaseDTO(
     @NotNull(message = "O id do type de pagamento não pode ser nulo.")
     @Positive(message = "O id do tipo de pagamento não pode ser negativo.")
     @JsonProperty("paymentTypeId")
-    val paymentTypeId: Int,
+    val paymentTypeId: Long,
 
     @Schema(description = "Id do registro da entrega.", example = "1")
     @NotNull(message = "O id do registro de entrega não pode ser nulo.")
     @Positive(message = "O id do registro de entrega não pode ser negativo.")
     @JsonProperty("deliverId")
-    val deliverId: Int
+    val deliverId: Long
 )

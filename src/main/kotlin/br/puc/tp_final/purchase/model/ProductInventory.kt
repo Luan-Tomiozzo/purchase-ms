@@ -9,13 +9,13 @@ data class ProductInventory(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "productInventoryId")
-    val productInventoryId: Long? = null,
+    var productInventoryId: Long? = null,
 
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "product", referencedColumnName = "productId", foreignKey = ForeignKey(name = "fk_product_inventory_product"))
-    val product: Product,
+    var product: Product,
 
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "inventory", referencedColumnName = "inventoryId", foreignKey = ForeignKey(name = "fk_product_inventory_inventory"))
-    val inventory: Inventory
+    var inventory: Inventory
 )

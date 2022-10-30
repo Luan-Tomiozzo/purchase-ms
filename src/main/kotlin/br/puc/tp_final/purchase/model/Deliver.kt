@@ -9,23 +9,23 @@ data class Deliver(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "deliverId")
-    val deliverId: Int? = null,
+    var deliverId: Long? = null,
 
     @Column(name = "addressNumber")
-    val addressNumber: Int,
+    var addressNumber: Int,
 
     @Column(name = "addressComplement")
-    val addressComplement: String,
+    var addressComplement: String,
 
     @Column(name = "streetName")
-    val streetName: String,
+    var streetName: String,
 
     @Column(name = "city")
-    val city: String,
+    var city: String,
 
     @Column(name = "isHomeAddress")
-    val isHomeAddress: Boolean,
+    var isHomeAddress: Boolean,
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "deliver", cascade = [CascadeType.ALL])
-    val purchases: List<Purchase>? = null
+    var purchases: List<Purchase>? = null
 )

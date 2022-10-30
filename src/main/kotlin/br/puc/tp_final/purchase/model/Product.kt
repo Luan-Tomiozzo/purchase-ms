@@ -9,20 +9,20 @@ data class Product(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "productId")
-    val productId: Long? = null,
+    var productId: Long? = null,
 
     @Column(name = "name")
-    val name: String,
+    var name: String,
 
     @Column(name = "description")
-    val description: String,
+    var description: String,
 
     @Column(name = "value")
-    val value: Double,
+    var value: Double,
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "product", cascade = [CascadeType.ALL])
-    val productsPurchases: List<ProductPurchase>? = null,
+    var productsPurchases: List<ProductPurchase>? = null,
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "product", cascade = [CascadeType.ALL])
-    val productsInventories: List<ProductInventory>? = null
+    var productsInventories: List<ProductInventory>? = null
 )

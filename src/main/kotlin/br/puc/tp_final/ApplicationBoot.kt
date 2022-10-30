@@ -118,8 +118,8 @@ class ApplicationBoot {
     }
 }
 
-// H2 Console URL: http://localhost:8080/h2
 /*
+H2 Console URL: http://localhost:8080/h2 (login: sa - password: )
 select * from tb_deliver;
 select * from tb_inventory;
 select * from tb_payment_type;
@@ -129,6 +129,7 @@ select * from tb_product_purchase;
 select * from tb_purchase;
 */
 // Swagger URL: http://localhost:8080/swagger-ui/index.html
+// RabbitMQ URL: http://localhost:15672 (login: guest - password: guest)
 fun main(args: Array<String>) {
     runApplication<ApplicationBoot>(*args)
 }

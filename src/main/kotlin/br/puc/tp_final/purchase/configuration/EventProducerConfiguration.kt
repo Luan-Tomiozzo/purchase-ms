@@ -11,9 +11,8 @@ import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
-const val EXCHANGE_NAME = "storeExchange"
-const val DELIVER_DISPATCH_QUEUE = "deliverDispatchDepartment"
-const val STORE_QUEUE = "allEvents"
+const val EXCHANGE_NAME = "purchaseExchange"
+const val PURCHASE_QUEUE = "purchaseQueue"
 
 @Configuration
 class EventProducerConfiguration {
@@ -23,30 +22,17 @@ class EventProducerConfiguration {
         return TopicExchange(EXCHANGE_NAME, true, false)
     }
 
-    @Bean(DELIVER_DISPATCH_QUEUE)
+    @Bean(PURCHASE_QUEUE)
     fun deliverQueue(): Queue {
-        return Queue(DELIVER_DISPATCH_QUEUE, true)
-    }
-
-    @Bean(STORE_QUEUE)
-    fun storeQueue(): Queue {
-        return Queue(STORE_QUEUE, true)
+        return Queue(PURCHASE_QUEUE, true)
     }
 
     @Bean
-    fun newDelivers(@Qualifier(DELIVER_DISPATCH_QUEUE) queue: Queue, eventExchange: TopicExchange): Binding {
+    fun newDelivers(@Qualifier(PURCHASE_QUEUE) queue: Queue, eventExchange: TopicExchange): Binding {
         return BindingBuilder
             .bind(queue)
             .to(eventExchange)
-            .with("store.deliver.#")
-    }
-
-    @Bean
-    fun newBinding(@Qualifier(STORE_QUEUE) queue: Queue, eventExchange: TopicExchange): Binding {
-        return BindingBuilder
-            .bind(queue)
-            .to(eventExchange)
-            .with("store.#")
+            .with("purchase.#")
     }
 
     @Bean

@@ -25,25 +25,9 @@
   "topic_permissions": [],
   "parameters": [],
   "policies": [],
-  "queues": [
-    {
-      "name": "events.business.deliver",
-      "vhost": "/",
-      "durable": true,
-      "auto_delete": false,
-      "arguments": {}
-    },
-    {
-      "name": "events.business.user",
-      "vhost": "/",
-      "durable": true,
-      "auto_delete": false,
-      "arguments": {}
-    }
-  ],
   "exchanges": [
     {
-      "name": "events.business.purchase",
+      "name": "purchase.exchange",
       "vhost": "/",
       "type": "topic",
       "durable": true,
@@ -52,21 +36,22 @@
       "arguments": {}
     }
   ],
+  "queues": [
+    {
+      "name": "purchase.queue",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    }
+  ],
   "bindings": [
     {
-      "source": "events.business.purchase",
+      "source": "purchase.exchange",
       "vhost": "/",
-      "destination": "events.business.deliver",
+      "destination": "purchase.queue",
       "destination_type": "queue",
-      "routing_key": "purchase.deliver.created",
-      "arguments": {}
-    },
-    {
-      "source": "events.business.purchase",
-      "vhost": "/",
-      "destination": "events.business.user",
-      "destination_type": "queue",
-      "routing_key": "purchase.user.created",
+      "routing_key": "purchase.queue",
       "arguments": {}
     }
   ]

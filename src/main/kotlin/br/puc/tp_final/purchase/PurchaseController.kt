@@ -1,6 +1,7 @@
 package br.puc.tp_final.purchase
 
 import br.puc.tp_final.purchase.dto.PurchaseDTO
+import br.puc.tp_final.purchase.service.PurchaseService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.media.Content
 import io.swagger.v3.oas.annotations.media.Schema
@@ -17,7 +18,7 @@ class PurchaseController(val purchaseService: PurchaseService) {
     @PostMapping("/buy")
     @ApiResponse(responseCode = "200", description = "OK", content = [Content(mediaType = "application/json", schema = Schema(implementation = PurchaseDTO::class))])
     @Operation(summary = "Envia requisição de compra", description = "Envia requisição de compra.")
-    fun buy(@RequestBody @Valid purchase: PurchaseDTO): Int {
-        return purchaseService.buy(purchase)
+    fun buy(@RequestBody @Valid purchaseDTO: PurchaseDTO): Boolean {
+        return purchaseService.buy(purchaseDTO)
     }
 }

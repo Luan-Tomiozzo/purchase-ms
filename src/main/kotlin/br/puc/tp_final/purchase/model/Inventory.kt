@@ -9,20 +9,20 @@ data class Inventory(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "inventoryId")
-    val inventoryId: Long? = null,
+    var inventoryId: Long? = null,
 
     @Column(name = "name")
-    val name: String,
+    var name: String,
 
     @Column(name = "description")
-    val description: String,
+    var description: String,
 
     @Column(name = "quantity")
-    val quantity: Long,
+    var quantity: Long,
 
     @Column(name = "maxQuantity")
-    val maxQuantity: Long,
+    var maxQuantity: Long,
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "inventory", cascade = [CascadeType.ALL])
-    val productsInventories: List<ProductInventory>? = null
+    var productsInventories: List<ProductInventory>? = null
 )
