@@ -15,9 +15,4 @@ class EventConsumerConfiguration {
         rabbitTemplate.messageConverter = jackson2MessageConverter
         return rabbitTemplate
     }
-
-    @Bean
-    fun jackson2MessageConverter(): Jackson2JsonMessageConverter {
-        return Jackson2JsonMessageConverter()
-    }
 }

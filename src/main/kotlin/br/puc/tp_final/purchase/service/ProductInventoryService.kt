@@ -24,9 +24,6 @@ class ProductInventoryService {
 
                 if (productInventory.inventory.quantity < quantity) {
                     throw BusinessException("O estoque não possui a quantidade solicitada para o produto $productId.");
-                } else {
-                    productInventory.inventory.quantity = productInventory.inventory.quantity - quantity;
-                    productInventoryRepository.save(productInventory);
                 }
             }
         }

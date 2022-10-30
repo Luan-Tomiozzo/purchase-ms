@@ -11,33 +11,25 @@ import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
-const val EXCHANGE_NAME = "purchaseExchange"
-const val PURCHASE_QUEUE = "purchaseQueue"
-
 @Configuration
 class EventProducerConfiguration {
 
     @Bean
-    fun eventExchange(): TopicExchange {
-        return TopicExchange(EXCHANGE_NAME, true, false)
+    fun purchaseExchange(): TopicExchange {
+        return TopicExchange(RabbitPurchaseConstants.PURCHASE_EXCHANGE, true, false)
     }
 
-    @Bean(PURCHASE_QUEUE)
-    fun deliverQueue(): Queue {
-        return Queue(PURCHASE_QUEUE, true)
+    @Bean(RabbitPurchaseConstants.PURCHASE_QUEUE)
+    fun purchaseQueue(): Queue {
+        return Queue(RabbitPurchaseConstants.PURCHASE_QUEUE, true)
     }
 
     @Bean
-    fun newDelivers(@Qualifier(PURCHASE_QUEUE) queue: Queue, eventExchange: TopicExchange): Binding {
+    fun newPurchases(@Qualifier(RabbitPurchaseConstants.PURCHASE_QUEUE) queue: Queue, eventExchange: TopicExchange): Binding {
         return BindingBuilder
             .bind(queue)
             .to(eventExchange)
-            .with("purchase.#")
-    }
-
-    @Bean
-    fun jackson2JsonMessageConverter(): Jackson2JsonMessageConverter {
-        return Jackson2JsonMessageConverter()
+            .with(RabbitPurchaseConstants.PURCHASE_QUEUE)
     }
 
     @Bean("rabbitTemplateProducer")

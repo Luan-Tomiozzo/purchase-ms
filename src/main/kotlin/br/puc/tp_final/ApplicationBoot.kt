@@ -7,9 +7,7 @@ import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
-import org.springframework.scheduling.annotation.EnableScheduling
 
-@EnableScheduling
 @SpringBootApplication
 class ApplicationBoot {
 
@@ -45,11 +43,11 @@ class ApplicationBoot {
         ))
 
         val inventories: List<Inventory> = inventoryRepository.saveAll(listOf(
-            Inventory(name = "Name 1", description = "Descrition 1", quantity = 10, maxQuantity = 100),
-            Inventory(name = "Name 2", description = "Descrition 2", quantity = 20, maxQuantity = 200),
-            Inventory(name = "Name 3", description = "Descrition 3", quantity = 30, maxQuantity = 300),
-            Inventory(name = "Name 4", description = "Descrition 4", quantity = 40, maxQuantity = 400),
-            Inventory(name = "Name 5", description = "Descrition 5", quantity = 50, maxQuantity = 500)
+            Inventory(name = "Name 1", description = "Descrition 1", quantity = 100, maxQuantity = 100),
+            Inventory(name = "Name 2", description = "Descrition 2", quantity = 200, maxQuantity = 200),
+            Inventory(name = "Name 3", description = "Descrition 3", quantity = 300, maxQuantity = 300),
+            Inventory(name = "Name 4", description = "Descrition 4", quantity = 400, maxQuantity = 400),
+            Inventory(name = "Name 5", description = "Descrition 5", quantity = 500, maxQuantity = 500)
         ))
 
         val paymentTypes: List<PaymentType> = paymentTypeRepository.saveAll(listOf(
