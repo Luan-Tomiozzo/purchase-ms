@@ -9,20 +9,24 @@ import javax.validation.constraints.Positive
 
 data class PurchaseDTO(
 
-    @Schema(description = "Lista de produtos a serem comprados.", type = "List")
-    @NotEmpty(message = "A lista de produtos não pode ser vazia.")
-    @JsonProperty("products")
-    val products: List<@Valid @NotNull(message = "Informe um produto para a lista. Não pode ser composta de elementos nulos.") ProductDTO>,
+        @field:Valid
+        @field:Schema(description = "Lista de produtos a serem comprados.", type = "List")
+        @field:NotEmpty(message = "A lista de produtos não pode ser vazia.")
+        @field:NotNull(message = "Informe um produto para a lista. Não pode ser composta de elementos nulos.")
+        @JsonProperty("products")
+        val products: List<ProductDTO>,
 
-    @Schema(description = "Id do tipo de pagamento.", example = "1")
-    @NotNull(message = "O id do type de pagamento não pode ser nulo.")
-    @Positive(message = "O id do tipo de pagamento não pode ser negativo.")
-    @JsonProperty("paymentTypeId")
-    val paymentTypeId: Long,
+        @field:Valid
+        @field:Schema(description = "Id do tipo de pagamento.", example = "1")
+        @field:NotNull(message = "O id do type de pagamento não pode ser nulo.")
+        @field:Positive(message = "O id do tipo de pagamento não pode ser negativo.")
+        @JsonProperty("paymentTypeId")
+        val paymentTypeId: Long,
 
-    @Schema(description = "Id do registro da entrega.", example = "1")
-    @NotNull(message = "O id do registro de entrega não pode ser nulo.")
-    @Positive(message = "O id do registro de entrega não pode ser negativo.")
-    @JsonProperty("deliverId")
-    val deliverId: Long
+        @field:Valid
+        @field:Schema(description = "Id do registro da entrega.", example = "1")
+        @field:NotNull(message = "O id do registro de entrega não pode ser nulo.")
+        @field:Positive(message = "O id do registro de entrega não pode ser negativo.")
+        @JsonProperty("deliverId")
+        val deliverId: Long
 )
