@@ -31,6 +31,8 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-configuration-processor")
 	implementation("io.github.microutils:kotlin-logging:1.6.10")
 	implementation("org.springframework.boot:spring-boot-starter-amqp:2.7.5")
+	implementation("org.springframework.boot:spring-boot-starter-validation:2.7.5")
+	implementation("javax.validation:validation-api:2.0.1.Final")
     implementation("org.projectlombok:lombok:1.18.24")
 
 	implementation("org.springdoc:springdoc-openapi-data-rest:1.6.12")
